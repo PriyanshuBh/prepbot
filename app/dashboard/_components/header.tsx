@@ -3,14 +3,14 @@ import { UserButton } from '@clerk/nextjs'
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import React, { useEffect } from 'react'
+import React from 'react'
 import Icons from "@/public/icons";
 function Header() {
 
     const path=usePathname();
-    useEffect(()=>{
-        console.log(path)
-    },[])
+    // useEffect(()=>{
+    //     console.log(path)
+    // },[])
 
   return (
     <header className="sticky top-0 w-full h-16 bg-[#09090B]/80 backdrop-blur-sm z-50 max-w-[1400px] mx-auto">

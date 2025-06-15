@@ -6,7 +6,7 @@ import {
     DialogDescription,
     DialogHeader,
     DialogTitle,
-    DialogTrigger,
+   
   } from "@/components/ui/dialog"
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -19,7 +19,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { useUser } from '@clerk/nextjs'
 import moment from 'moment'
 import { useRouter } from 'next/navigation'
-import { MagicCard } from '@/components/ui/magic-card'
+
 
 function AddNewInterview() {
     const [openDailog,setOpenDailog]=useState(false)
@@ -45,7 +45,8 @@ function AddNewInterview() {
         try {
             const parsed = JSON.parse(MockJsonResp);
             console.log(parsed);
-            setJsonResponse(parsed); // <-- this should store actual parsed object, not the raw string
+            setJsonResponse(parsed);
+            console.log(jsonResponse) // <-- this should store actual parsed object, not the raw string
           } catch (err) {
             console.error("❌ Failed to parse AI response as JSON:", err);
             console.log("Raw AI response:", MockJsonResp);
