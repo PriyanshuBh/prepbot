@@ -24,23 +24,26 @@ function InterviewList() {
     const {user}=useUser();
     const [interviewList,setInterviewList]=useState<InterviewData[]>([]);
 
-    useEffect(()=>{
-        user&&GetInterviewList();
-    },[user])
-
-    const GetInterviewList=async()=>{
-        if (!user || !user.primaryEmailAddress?.emailAddress) {
-            console.error("User or email missing");
-            return;
-        }
-        const result=await db.select()
-        .from(MockInterview)
-        .where(eq(MockInterview.createdBy,user?.primaryEmailAddress?.emailAddress))
-        .orderBy(desc(MockInterview.id));
-
-        console.log(result);
-        setInterviewList(result);
-    }
+    useEffect(() => {
+        const GetInterviewList = async () => {
+            if (!user || !user.primaryEmailAddress?.emailAddress) {
+                console.error("User or email missing");
+                return;
+            }
+    
+            const result = await db.select()
+                .from(MockInterview)
+                .where(eq(MockInterview.createdBy, user.primaryEmailAddress.emailAddress))
+                .orderBy(desc(MockInterview.id));
+    
+            console.log(result);
+            setInterviewList(result);
+        };
+    
+        if (user) GetInterviewList();
+    }, [user]);
+    
+ 
 
   return (
     <div>
